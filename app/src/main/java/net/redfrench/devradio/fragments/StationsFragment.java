@@ -3,11 +3,14 @@ package net.redfrench.devradio.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import net.redfrench.devradio.R;
+import net.redfrench.devradio.adapters.StationsAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,8 +62,22 @@ public class StationsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_stations, container, false);
+        View v = inflater.inflate(R.layout.fragment_stations, container, false);
+
+        RecyclerView recyclerView = (RecyclerView)v.findViewById(R.id.recycler_stations); // recycler_stations (content_stations_recycler.xml) is the content
+        recyclerView.setHasFixedSize(true);  // if the recyclerView is a fixed size, set this to true for increased speed
+
+        StationsAdapter adapter = new StationsAdapter();  // view holder
+        recyclerView.setAdapter(adapter);
+
+        // RecyclerView needs to be given a layout manager to specify how the child views will be arranged
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(layoutManager);
+
+        return v;  // Inflate the layout for this fragment
     }
+
+
 
 }
