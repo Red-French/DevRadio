@@ -17,10 +17,67 @@
             android:orientation="vertical">
 
             <TextView
-            android:text="Hello, Red!!!"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"/>
+                android:text="It's Friday Evening"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#373737"
+                android:textSize="25sp"
+                android:paddingLeft="12dp"
+                android:paddingTop="12dp"/>
+            <TextView
+                android:text="Play something for..."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#A4A4A4"
+                android:textSize="18sp"
+                android:paddingLeft="12dp"
+                />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/container_top_row"></FrameLayout>
+
+            <TextView
+                android:text="It's Friday Evening"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#373737"
+                android:textSize="25sp"
+                android:paddingLeft="12dp"
+                android:paddingTop="12dp"/>
+            <TextView
+                android:text="Play something for..."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#A4A4A4"
+                android:textSize="18sp"
+                android:paddingLeft="12dp"
+                />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/container_middle_row"></FrameLayout>
+
+            <TextView
+                android:text="It's Friday Evening"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#373737"
+                android:textSize="25sp"
+                android:paddingLeft="12dp"
+                android:paddingTop="12dp"/>
+            <TextView
+                android:text="Play something for..."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#A4A4A4"
+                android:textSize="18sp"
+                android:paddingLeft="12dp"
+                />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/container_bottom_row"></FrameLayout>
 
         </LinearLayout>
 
