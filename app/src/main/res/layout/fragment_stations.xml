@@ -2,8 +2,9 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="net.redfrench.devradio.fragments.StationsFragment">
+             tools:context="net.redfrench.devradio.fragments.StationsFragment"
+             android:background="@color/colorPrimary">
 
-
+    <include layout="@layout/content_stations_recycler" />
 
 </FrameLayout>
