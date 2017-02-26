@@ -1,5 +1,6 @@
 package net.redfrench.devradio.fragments;
 
+// ~~ STATIONSFRAGMENT WILL HOLD RECYCLERVIEW ~
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 
 import net.redfrench.devradio.R;
 import net.redfrench.devradio.adapters.StationsAdapter;
+import net.redfrench.devradio.services.DataService;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,14 +20,15 @@ import net.redfrench.devradio.adapters.StationsAdapter;
  * create an instance of this fragment.
  */
 public class StationsFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private static final String ARG_STATION_TYPE = "station_type";  // ARG_STATION_TYPE will be the key
+
+    // types of stations
+    public static final int STATION_TYPE_FEATURED = 0;
+    public static final int STATION_TYPE_RECENT = 1;
+    public static final int STATION_TYPE_PARTY = 2;
+
+    private int stationType;
 
 
     public StationsFragment() {
@@ -36,17 +39,16 @@ public class StationsFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param stationType the radio station type.
      * @return A new instance of fragment StationsFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static StationsFragment newInstance(String param1, String param2) {
+
+    // FRAGMENT CONSTRUCTOR (called from DaddyFragmet.java)
+    public static StationsFragment newInstance(int stationType) {  // pass in stationType from the main fragment (daddyFragment)
         StationsFragment fragment = new StationsFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+        args.putInt(ARG_STATION_TYPE, stationType);  // store key/value pair in bundle (station_type/0, station_type/1, stations_type/2)
+        fragment.setArguments(args);  // set stationType
         return fragment;
     }
 
@@ -54,8 +56,7 @@ public class StationsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            stationType = getArguments().getInt(ARG_STATION_TYPE); // grab station type from bundle
         }
     }
 
@@ -64,20 +65,32 @@ public class StationsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_stations, container, false);
 
+        // ~ RECYCLER VIEW ~
         RecyclerView recyclerView = (RecyclerView)v.findViewById(R.id.recycler_stations); // recycler_stations (content_stations_recycler.xml) is the content
         recyclerView.setHasFixedSize(true);  // if the recyclerView is a fixed size, set this to true for increased speed
 
-        StationsAdapter adapter = new StationsAdapter();  // view holder
+        // ~ ADAPTER ~
+        StationsAdapter adapter;  // the adapter will work directly with the viewHolder (StationsViewHolder)
+
+        if (stationType == STATION_TYPE_FEATURED) {  // stationType was set in onCreate
+            adapter = new StationsAdapter(DataService.getInstance().getFeaturedStations());
+        } else if (stationType == STATION_TYPE_RECENT) {
+            adapter = new StationsAdapter(DataService.getInstance().getRecentStations());
+        } else {
+            adapter = new StationsAdapter(DataService.getInstance().getPartyStations());
+        }
+
         recyclerView.setAdapter(adapter);
 
-        // RecyclerView needs to be given a layout manager to specify how the child views will be arranged
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        // ~ LAYOUT MANAGER ~
+        // set orientation on the recyclerView
+        // RecyclerView is very modularized and needs to be given a layout manager to specify how the child views will be arranged
+        // normally, you'd expect 'recyclerView.orientation', but recyclerView is different
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());  // getContext() is the context of the activity
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(layoutManager);
 
         return v;  // Inflate the layout for this fragment
     }
-
-
 
 }
