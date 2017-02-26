@@ -5,6 +5,6 @@
              tools:context="net.redfrench.devradio.fragments.StationsFragment"
              android:background="@color/colorPrimary">
 
-    <include layout="@layout/content_stations_recycler" />
+    <include layout="@layout/content_stations_recycler" /> <!-- res/layout/content_stations_recycler.xml -->
 
 </FrameLayout>
