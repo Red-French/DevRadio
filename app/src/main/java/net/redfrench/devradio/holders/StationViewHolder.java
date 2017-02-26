@@ -9,7 +9,7 @@ import android.view.View;
 
 public class StationViewHolder extends RecyclerView.ViewHolder {
 
-    public StationViewHolder(View itemView) {
+    public StationViewHolder(View itemView) {  // constructor (a java entry point that's called when you create a new instance of this class)
         super(itemView);
     }
 }
