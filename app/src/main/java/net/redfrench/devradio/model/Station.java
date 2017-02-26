@@ -22,7 +22,7 @@ public class Station {
     }
 
     public String getImgUri() {  // can right-click>Generate>Getter or right-click>Refactor>Encapsulate Fields to generate
-        return imgUri;
+        return DRAWABLE + imgUri;
     }
 
 }
