@@ -64,23 +64,23 @@ public class DaddyFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_daddy, container, false);  // inflate 'fragment_daddy.xml'
 
         FragmentManager fm = getActivity().getSupportFragmentManager();  // getSupportFragmentManager() is a method of Activity, so since
-                                                                         // this is a fragment, must pass in the context
-        // no 'null' check because want data to load each time; therefore need the view destroyed and recreated each time
+                                                                         // this is a fragment, must first get the context (activity)
+        // no 'null' check because want data to load each time; therefore need the view destroyed and re-created each time
         StationsFragment stationsFragment1;
-        StationsFragment stationsFragment2;
+        StationsFragment stationsFragment2;  // STATIONSFRAGMENT WILL HOLD RECYCLERVIEW
         StationsFragment stationsFragment3;
 
-        stationsFragment1 = StationsFragment.newInstance("blah", "blah");
+        stationsFragment1 = StationsFragment.newInstance(StationsFragment.STATION_TYPE_FEATURED);  // fragment constructor called
         fm.beginTransaction()
             .add(R.id.container_top_row, stationsFragment1)
             .commit();
 
-        stationsFragment2 = StationsFragment.newInstance("blah", "blah");
+        stationsFragment2 = StationsFragment.newInstance(StationsFragment.STATION_TYPE_RECENT);
         fm.beginTransaction()
                 .add(R.id.container_middle_row, stationsFragment2)
                 .commit();
 
-        stationsFragment3 = StationsFragment.newInstance("blah", "blah");
+        stationsFragment3 = StationsFragment.newInstance(StationsFragment.STATION_TYPE_PARTY);
         fm.beginTransaction()
                 .add(R.id.container_bottom_row, stationsFragment3)
                 .commit();
