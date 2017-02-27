@@ -31,6 +31,7 @@
                 android:textColor="#A4A4A4"
                 android:textSize="18sp"
                 android:paddingLeft="12dp"
+                android:paddingBottom="10dp"
                 />
             <FrameLayout
                 android:layout_width="match_parent"
@@ -52,6 +53,7 @@
                 android:textColor="#A4A4A4"
                 android:textSize="18sp"
                 android:paddingLeft="12dp"
+                android:paddingBottom="10dp"
                 />
             <FrameLayout
                 android:layout_width="match_parent"
@@ -73,6 +75,7 @@
                 android:textColor="#A4A4A4"
                 android:textSize="18sp"
                 android:paddingLeft="12dp"
+                android:paddingBottom="10dp"
                 />
             <FrameLayout
                 android:layout_width="match_parent"
