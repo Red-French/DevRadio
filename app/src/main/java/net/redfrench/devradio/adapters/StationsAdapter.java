@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.redfrench.devradio.R;
+import net.redfrench.devradio.activities.MainActivity;
 import net.redfrench.devradio.holders.StationViewHolder;
 import net.redfrench.devradio.model.Station;
 
@@ -26,9 +27,17 @@ public class StationsAdapter extends RecyclerView.Adapter<StationViewHolder>{  /
 
     // pass data into the view holder
     @Override
-    public void onBindViewHolder(StationViewHolder holder, int position) {  // 'holder' is passing in the card, 'position' is the index
-        Station station = stations.get(position);  // 'stations' is the ArrayList
+    public void onBindViewHolder(StationViewHolder holder, final int position) {  // 'holder' is passing in the card, 'position' is the index
+        final Station station = stations.get(position);  // 'stations' is the ArrayList
         holder.updateUI(station); // updateUI() is in StationViewHolder.java
+
+        // load the details screen
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.getMainActivity().loadDetailsScreen(station);
+            }
+        });
     }
 
     @Override
