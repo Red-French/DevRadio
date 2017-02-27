@@ -1,4 +1,5 @@
-# Creating Lists and Cards
+# RecyclerView
+## Creating Lists and Cards
 
 To create complex lists and cards with material design styles in your apps, you can use the RecyclerView and CardView widgets.
 
@@ -34,41 +35,47 @@ Animations for adding and removing items are enabled by default in RecyclerView.
 ### Examples
 The following code example demonstrates how to add the RecyclerView to a layout:
 
+```java
 <!-- A RecyclerView with some commonly used attributes -->
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/my_recycler_view"
-    android:scrollbars="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+  <android.support.v7.widget.RecyclerView
+      android:id="@+id/my_recycler_view"
+      android:scrollbars="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"/>
+```
 Once you have added a RecyclerView widget to your layout, obtain a handle to the object, connect it to a layout manager, and attach an adapter for the data to be displayed:
 
-public class MyActivity extends Activity {
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+```java
+  public class MyActivity extends Activity {
+      private RecyclerView mRecyclerView;
+      private RecyclerView.Adapter mAdapter;
+      private RecyclerView.LayoutManager mLayoutManager;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.my_activity);
-        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+      @Override
+      protected void onCreate(Bundle savedInstanceState) {
+          super.onCreate(savedInstanceState);
+          setContentView(R.layout.my_activity);
+          mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
+          // use this setting to improve performance if you know that changes
+          // in content do not change the layout size of the RecyclerView
+          mRecyclerView.setHasFixedSize(true);
 
-        // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+          // use a linear layout manager
+          mLayoutManager = new LinearLayoutManager(this);
+          mRecyclerView.setLayoutManager(mLayoutManager);
 
-        // specify an adapter (see also next example)
-        mAdapter = new MyAdapter(myDataset);
-        mRecyclerView.setAdapter(mAdapter);
-    }
-    ...
-}
+          // specify an adapter (see also next example)
+          mAdapter = new MyAdapter(myDataset);
+          mRecyclerView.setAdapter(mAdapter);
+      }
+      ...
+  }
+  ```
+
 The adapter provides access to the items in your data set, creates views for items, and replaces the content of some of the views with new data items when the original item is no longer visible. The following code example shows a simple implementation for a data set that consists of an array of strings displayed using TextView widgets:
 
+```java
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private String[] mDataset;
 
@@ -117,6 +124,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return mDataset.length;
     }
 }
+```
 
 Figure 3. Card examples.
 
@@ -132,32 +140,37 @@ To set the corner radius in your code, use the CardView.setRadius method.
 To set the background color of a card, use the card_view:cardBackgroundColor attribute.
 The following code example shows you how to include a CardView widget in your layout:
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    ...>
-    <!- A CardView that contains a TextView ->
-    <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view"
-        android:layout_gravity="center"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        card_view:cardCornerRadius="4dp">
+```java
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      xmlns:card_view="http://schemas.android.com/apk/res-auto"
+      ... >
+      <!-- A CardView that contains a TextView -->
+      <android.support.v7.widget.CardView
+          xmlns:card_view="http://schemas.android.com/apk/res-auto"
+          android:id="@+id/card_view"
+          android:layout_gravity="center"
+          android:layout_width="200dp"
+          android:layout_height="200dp"
+          card_view:cardCornerRadius="4dp">
 
-        <TextView
-            android:id="@+id/info_text"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </android.support.v7.widget.CardView>
-</LinearLayout>
+          <TextView
+              android:id="@+id/info_text"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" />
+      </android.support.v7.widget.CardView>
+  </LinearLayout>
+  ```
+
 For more information, see the API reference for CardView.
 
 ## Add Dependencies
 The RecyclerView and CardView widgets are part of the v7 Support Libraries. To use these widgets in your project, add these Gradle dependencies to your app's module:
 
-dependencies {
-    ...
-    compile 'com.android.support:cardview-v7:21.0.+'
-    compile 'com.android.support:recyclerview-v7:21.0.+'
-}
+```java
+  dependencies {
+      ...
+      compile 'com.android.support:cardview-v7:21.0.+'
+      compile 'com.android.support:recyclerview-v7:21.0.+'
+  }
+  ```
