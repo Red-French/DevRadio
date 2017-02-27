@@ -135,8 +135,8 @@ The following code example shows you how to include a CardView widget in your la
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    ... >
-    <!-- A CardView that contains a TextView -->
+    ...>
+    <!- A CardView that contains a TextView ->
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
