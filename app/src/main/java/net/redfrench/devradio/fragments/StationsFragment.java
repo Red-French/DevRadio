@@ -2,6 +2,7 @@ package net.redfrench.devradio.fragments;
 
 // ~~ STATIONSFRAGMENT WILL HOLD RECYCLERVIEW ~
 
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -80,6 +81,8 @@ public class StationsFragment extends Fragment {
             adapter = new StationsAdapter(DataService.getInstance().getPartyStations());
         }
 
+        recyclerView.addItemDecoration(new HorizontalSpaceItemDecorator(30));  // pass space size to go between images
+
         recyclerView.setAdapter(adapter);
 
         // ~ LAYOUT MANAGER ~
@@ -93,4 +96,20 @@ public class StationsFragment extends Fragment {
         return v;  // Inflate the layout for this fragment
     }
 
+}
+
+// add space between images
+class HorizontalSpaceItemDecorator extends RecyclerView.ItemDecoration {
+
+    private final int spacer;
+
+    public HorizontalSpaceItemDecorator(int spacer) {
+        this.spacer = spacer;
+    }
+
+    @Override
+    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+        super.getItemOffsets(outRect, view, parent, state);
+        outRect.right = spacer;  // 'outRect' is the next rectangle to the right
+    }
 }
